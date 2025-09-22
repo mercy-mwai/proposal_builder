@@ -401,7 +401,7 @@ export default function BusinessConsultingProposal({
                 </div>
               </div>
 
-              {/* Executive Summary */}
+            
               <section className="section" id="overview">
                 <h2 className="section-title">Executive Summary</h2>
                 <p>
