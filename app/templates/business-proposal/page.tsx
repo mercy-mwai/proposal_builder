@@ -17,7 +17,7 @@ const businessTemplates = [
     category: "Consulting",
     features: ["Strategic Planning", "Process Optimization", "Growth Strategy", "Performance Metrics"],
     color: "bg-blue-500",
-    href: "/templates/business/business-consulting",
+    href: "/templates/business-proposal/business-consulting",
   },
   {
     id: "digital-marketing",
@@ -28,7 +28,7 @@ const businessTemplates = [
     category: "Marketing",
     features: ["SEO Strategy", "Social Media", "Content Marketing", "Analytics & Reporting"],
     color: "bg-green-500",
-    href: "/templates/business/digital-marketing",
+    href: "/templates/business-proposal/digital-marketing",
   },
   {
     id: "business-strategy",
@@ -39,7 +39,7 @@ const businessTemplates = [
     category: "Strategy",
     features: ["Market Analysis", "Competitive Research", "Strategic Roadmap", "Implementation Plan"],
     color: "bg-purple-500",
-    href: "/templates/business/business-strategy",
+    href: "/templates/business-proposal/business-strategy",
   },
   {
     id: "financial-consulting",
@@ -50,7 +50,7 @@ const businessTemplates = [
     category: "Finance",
     features: ["Financial Analysis", "Budget Planning", "Investment Strategy", "Risk Assessment"],
     color: "bg-orange-500",
-    href: "/templates/business/financial-consulting",
+    href: "/templates/business-proposal/financial-consulting",
   },
   {
     id: "hr-consulting",
@@ -61,7 +61,7 @@ const businessTemplates = [
     category: "Human Resources",
     features: ["Talent Management", "Organizational Design", "Performance Systems", "Culture Development"],
     color: "bg-indigo-500",
-    href: "/templates/business/hr-consulting",
+    href: "/templates/business-proposal/hr-consulting",
   },
   {
     id: "general-business",
@@ -72,7 +72,7 @@ const businessTemplates = [
     category: "General",
     features: ["Flexible Structure", "Customizable Sections", "Professional Design", "Easy to Modify"],
     color: "bg-gray-500",
-    href: "/templates/business/general-business",
+    href: "/templates/business-proposal/general-consulting",
   },
 ]
 
