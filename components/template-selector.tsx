@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { FileText, Building2, Heart, User, Calendar, ArrowRight, CheckCircle } from "lucide-react"
-
+import { useRouter } from "next/navigation"
 interface Template {
   id: string
   title: string
@@ -65,6 +65,7 @@ const templates: Template[] = [
 
 export function TemplateSelector() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null)
+  const router =useRouter();
 
   const handleTemplateSelect = (templateId: string) => {
     setSelectedTemplate(templateId)
@@ -72,8 +73,7 @@ export function TemplateSelector() {
 
   const handleContinue = () => {
     if (selectedTemplate) {
-      // Updated to use Next.js router instead of window.location
-      window.location.href = `/create?template=${selectedTemplate}`
+      window.location.href = `/templates/${selectedTemplate}`
     }
   }
 
