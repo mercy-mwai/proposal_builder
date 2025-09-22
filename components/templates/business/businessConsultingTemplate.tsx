@@ -371,15 +371,15 @@ export default function BusinessConsultingProposal({
               </p>
             </div>
 
-            {/* Proposal Content */}
+           
             <div className="proposal-content">
-              {/* Header */}
+              
               <div className="proposal-header">
                 <h1 className="proposal-title">Consulting You Can Count On</h1>
                 <p className="proposal-subtitle">Strategic Business Consulting Proposal</p>
               </div>
 
-              {/* Client Information */}
+              
               <div className="client-info">
                 <div>
                   <h4>Prepared For</h4>
@@ -448,7 +448,7 @@ export default function BusinessConsultingProposal({
                 </p>
               </section>
 
-              {/* About Us */}
+              
               <section className="section" id="about">
                 <h2 className="section-title">About Us</h2>
                 <p>
@@ -501,7 +501,7 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Project Summary */}
+              
               <section className="section" id="project-summary">
                 <h2 className="section-title">Project Summary</h2>
                 <p>
@@ -547,7 +547,6 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Project Activities */}
               <section className="section" id="activities">
                 <h2 className="section-title">Project Activities</h2>
 
@@ -581,7 +580,7 @@ export default function BusinessConsultingProposal({
                 </p>
               </section>
 
-              {/* Timeline */}
+             
               <section className="section" id="timeline">
                 <h2 className="section-title">Project Timeline</h2>
                 <table className="timeline-table">
@@ -635,7 +634,7 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Team */}
+             
               <section className="section" id="team">
                 <h2 className="section-title">Meet Our Team</h2>
                 <div className="team-grid">
@@ -678,7 +677,7 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Investment */}
+             
               <section className="section" id="investment">
                 <h2 className="section-title">Your Investment</h2>
                 <p>
@@ -768,7 +767,6 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Contract Summary */}
               <section className="section" id="contract">
                 <h2 className="section-title">Agreement Summary</h2>
                 <div className="contract-section">
@@ -808,7 +806,6 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Next Steps */}
               <section className="section" id="next-steps">
                 <h2 className="section-title">Next Steps</h2>
                 <div
