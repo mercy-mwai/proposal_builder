@@ -1,20 +1,72 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Link from "next/link";
 import Divider from "../ui/divider";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Chrome } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Alert, AlertDescription } from "../ui/alert";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 
 const LoginForm = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const router = useRouter();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (data.success) {
+        localStorage.setItem("auth-token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        router.push("/dashboard");
+      } else {
+        setError(data.message || "Login Failed");
+      }
+    } catch (error) {
+      setError("Network error. Please check your connction and try again");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <Card>
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -22,7 +74,10 @@ const LoginForm = () => {
               name="email"
               type="email"
               placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleInputChange}
               required
+              disabled={isLoading}
             />
           </div>
           <div className="space-y-2">
@@ -32,9 +87,22 @@ const LoginForm = () => {
                 id="password"
                 name="password"
                 type="password"
+                value={formData.password}
+                onChange={handleInputChange}
                 placeholder="Enter your password"
                 required
+                disabled={isLoading}
               />
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                onClick={() => setShowPassword(!showPassword)}
+                disabled={isLoading}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </Button>
             </div>
           </div>
           <div className="flex justify-between items-center text-sm">
@@ -52,8 +120,15 @@ const LoginForm = () => {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full">
-            Sign in
+          <Button type="submit" className="w-full" disabled={isLoading}>
+               {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Signing In...
+              </>
+            ) : (
+              "Sign In"
+            )}
           </Button>
         </form>
 
@@ -66,8 +141,12 @@ const LoginForm = () => {
           </span>
           <Divider />
           <div className="social-login mt-2">
-            <Button variant="outline" className="w-full">
-              <Chrome className="mr-2 h-4 w-4"/>
+            <Button
+              variant="outline"
+              className="w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <img src="/assets/icons/google.svg" className="h-5 w-5" />
+              <span>Sign in with google</span>
             </Button>
           </div>
         </div>
