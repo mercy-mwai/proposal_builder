@@ -10,6 +10,11 @@ import { useRouter } from "next/navigation";
 import { Alert, AlertDescription } from "../ui/alert";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 
+interface LoginFormData {
+  email:string,
+  password:string
+}
+
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -55,6 +60,9 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
+  const handleGoogleSignIn=()=>{
+    window.location.href= "http://127.0.0.1:8000/auth/google"
+  }
   return (
     <Card>
       <CardHeader>
@@ -143,6 +151,7 @@ const LoginForm = () => {
           <div className="social-login mt-2">
             <Button
               variant="outline"
+              onClick={handleGoogleSignIn}
               className="w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
             >
               <img src="/assets/icons/google.svg" className="h-5 w-5" />
