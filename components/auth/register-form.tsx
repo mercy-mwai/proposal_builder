@@ -36,24 +36,38 @@ const handleSubmit=async (e: React.FormEvent)=>{
 e.preventDefault();
 setIsLoading(true);
 setError("");
+
+if(formData.password !== formData.confirmPassword){
+    setError("Passwords do not match");
+    setIsLoading(false);
+    return
+}
 try{
     const response= await fetch("http://127.0.0.1:8000/api/auth/register", {
         method: "POST",
         headers:{
             "Content-Type":"application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+            name:formData.name,
+            email:formData.email,
+            password:formData.password,
+            password_confirmation:formData.confirmPassword
+        })
     });
     const data= await response.json();
     if(data.success){
-
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user))
     }else{
-        setError(data.message || "Failed")
+        setError(data.message || "Registration Failed")
     }
 
 
 }catch(error){
-
+    setError("Network error. Please try again")
+}finally{
+    setIsLoading(false);
 }
 
 }
@@ -64,10 +78,11 @@ try{
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Register</CardTitle>
+        <CardTitle className="text-center text-lg">Register</CardTitle>
         <CardContent>
           <form className="space-y-4">
-            <div className="space-y-2">
+            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+            <div className="space-y-2 mt-3">
               <Label htmlFor="name">
                 <Input
                   id="name"
@@ -112,8 +127,8 @@ try{
               <Label htmlFor="confirmPassword">
                 <div className="relative">
                   <Input
-                    id="password"
-                    name="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
                     type="password"
                     placeholder="Confirm Your Password"
                     value={formData.confirmPassword}
@@ -123,13 +138,13 @@ try{
                 </div>
               </Label>
             </div>
-            <Button type="submit" className="w-full">
-              Sign Up
+            <Button type="submit" className="w-full" disabled={isLoading} onClick={handleSubmit}>
+             {isLoading? "Creating account...": "Sign up"}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <span className="d-block cate pt-10">
-              Have an account <Link href={"/login"}>login</Link>
+              Have an account? <Link href={"/auth/login"}>Login</Link>
             </span>
             <Divider />
             <div className="social-login mt-2">
