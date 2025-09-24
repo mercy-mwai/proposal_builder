@@ -156,6 +156,7 @@ const LoginForm = () => {
             >
               <img src="/assets/icons/google.svg" className="h-5 w-5" />
               <span>Sign in with google</span>
+              
             </Button>
           </div>
         </div>
