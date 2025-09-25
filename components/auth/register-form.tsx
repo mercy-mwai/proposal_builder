@@ -62,8 +62,6 @@ try{
     }else{
         setError(data.message || "Registration Failed")
     }
-
-
 }catch(error){
     setError("Network error. Please try again")
 }finally{
