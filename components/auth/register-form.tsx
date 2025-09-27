@@ -67,7 +67,6 @@ try{
 }finally{
     setIsLoading(false);
 }
-
 }
 
   const handleGoogleSignIn = () => {
