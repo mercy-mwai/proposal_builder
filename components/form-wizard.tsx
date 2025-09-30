@@ -1,8 +1,7 @@
 "use client"
 
 import React from "react"
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -28,6 +27,16 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react"
+import { isAuthenticated } from "@/lib/auth"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { useRouter } from "next/navigation"
 
 interface FormData {
   template: string
@@ -79,6 +88,7 @@ export function FormWizard() {
   const [currentStep, setCurrentStep] = useState(1)
   const [showPreview, setShowPreview] = useState(true)
   const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [showAuthDialog, setShowAuthDialog] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     template,
     businessInfo: {
@@ -106,6 +116,20 @@ export function FormWizard() {
   })
 
   const progress = (currentStep / steps.length) * 100
+  const router = useRouter()
+
+  useEffect(() => {
+    const savedDraft = localStorage.getItem("proposal_draft")
+    if (savedDraft) {
+      try {
+        const draftData = JSON.parse(savedDraft)
+        setFormData(draftData)
+        localStorage.removeItem("proposal_draft")
+      } catch (error) {
+        console.error("Failed to restore draft:", error)
+      }
+    }
+  }, [])
 
   const handleNext = () => {
     if (currentStep < steps.length) {
@@ -580,15 +604,30 @@ export function FormWizard() {
   }
 
   const handleGeneratePDF = () => {
+    localStorage.setItem("proposal_draft", JSON.stringify(formData))
+    if (!isAuthenticated()) {
+      setShowAuthDialog(true)
+      return
+    }
     setShowPaymentModal(true)
+  }
+
+  const handleLoginRedirect = () => {
+    localStorage.setItem("proposal_draft", JSON.stringify(formData))
+    localStorage.setItem("redirect_after_login", "/create?template=" + template)
+    router.push("/auth/login")
+  }
+
+  const handleRegisterRedirect = () => {
+    localStorage.setItem("proposal_draft", JSON.stringify(formData))
+    localStorage.setItem("redirect_after_login", "/create?template=" + template)
+    router.push("/auth/register")
   }
 
   const handlePaymentSuccess = () => {
     setShowPaymentModal(false)
-    // Here you would trigger the actual PDF generation and download
     console.log("Payment successful, generating PDF...")
 
-    // Simulate PDF download
     setTimeout(() => {
       const link = document.createElement("a")
       link.href = "#" // This would be the actual PDF URL
@@ -714,6 +753,38 @@ export function FormWizard() {
           </Button>
         )}
       </div>
+
+      {/* Authentication Dialog */}
+      <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create Account to Download</DialogTitle>
+            <DialogDescription>
+              To download your proposal, you need to create a free ProposalGen account. Your progress has been saved and
+              will be restored after you sign in.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-medium text-blue-900 mb-2">Why create an account?</h4>
+              <ul className="text-sm text-blue-800 space-y-1">
+                <li>✓ Download your proposals as PDF</li>
+                <li>✓ Save and access your proposals anytime</li>
+                <li>✓ Edit and update proposals later</li>
+                <li>✓ Track all your proposals in one place</li>
+              </ul>
+            </div>
+          </div>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button onClick={handleLoginRedirect} variant="outline" className="w-full sm:w-auto bg-transparent">
+              I Have an Account
+            </Button>
+            <Button onClick={handleRegisterRedirect} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
+              Create Free Account
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <PaymentModal
         isOpen={showPaymentModal}

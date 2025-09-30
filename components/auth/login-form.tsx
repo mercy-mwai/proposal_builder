@@ -50,7 +50,13 @@ const LoginForm = () => {
       if (data.success) {
         localStorage.setItem("auth-token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/dashboard");
+       const redirectUrl= localStorage.getItem("redirect_after_login")
+       if(redirectUrl){
+        localStorage.removeItem("redirect_after_login");
+        router.push(redirectUrl);
+       }else{
+         router.push("/dashboard");
+       }
       } else {
         setError(data.message || "Login Failed");
       }
