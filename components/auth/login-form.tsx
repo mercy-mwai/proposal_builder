@@ -143,7 +143,7 @@ const LoginForm = () => {
         <div className="mt-4 text-center">
           <span className="d-block cate pt-10">
             Don't have an account?{" "}
-            <Link href="/signup" className="text-sm text-gray-600">
+            <Link href="/auth/signup" className="text-sm text-gray-600">
               Sign Up
             </Link>
           </span>

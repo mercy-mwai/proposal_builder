@@ -23,7 +23,7 @@ import {
   Users,
   Mail,
 } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 interface DigitalMarketingTemplateProps {
   clientName?: string;
   companyName?: string;
@@ -48,10 +48,13 @@ export default function DigitalMarketingTemplate({
   });
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
 
+  const router =useRouter();
   const handleDownload = (e: React.FormEvent) => {
+    router.push("/auth/login");
     e.preventDefault();
     console.log("Download requested:", downloadForm);
     setIsDownloadOpen(false);
+
   };
 
   return (
