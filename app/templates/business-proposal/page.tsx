@@ -132,7 +132,7 @@ export default function BusinessProposalsPage() {
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">Key Features:</h4>
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-2">
                         {template.features.map((feature, index) => (
                           <Badge key={index} variant="outline" className="text-xs">
                             {feature}
@@ -142,7 +142,7 @@ export default function BusinessProposalsPage() {
                     </div>
 
                     <Link href={template.href}>
-                      <Button className="w-full group-hover:bg-primary/90 transition-colors">
+                      <Button className="w-full mt-4 group-hover:bg-primary/90 transition-colors">
                         Use This Template
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>

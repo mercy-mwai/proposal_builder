@@ -1,11 +1,18 @@
+"use client"
+
 import { TemplateSelector } from "../components/template-selector"
 import { Button } from "@/components/ui/button"
 import { FileText, Users, Zap } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
+  const router= useRouter();
+  const handleAuth=()=>{
+    router.push("/auth/register");
+  }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-indigo-400">
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
@@ -17,7 +24,7 @@ export default function HomePage() {
             <Link href="/dashboard">
               <Button variant="outline">My Proposals</Button>
             </Link>
-            <Button>Get Started</Button>
+            <Button onClick={handleAuth}>Get Started</Button>
           </div>
         </div>
       </nav>

@@ -128,19 +128,25 @@ export function TemplateSelector() {
                   ))}
                 </ul>
               </div>
+              {selectedTemplate === template.id && (
+                <div className="mt-6 pt-4 border-t">
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleContinue()
+                    }}
+                    size="lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    Continue with Selected Template
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}
       </div>
-
-      {selectedTemplate && (
-        <div className="text-center">
-          <Button onClick={handleContinue} size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
-            Continue with Selected Template
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      )}
     </div>
   )
 }
