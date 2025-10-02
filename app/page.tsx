@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 export default function HomePage() {
   const router= useRouter();
   const handleAuth=()=>{
-    router.push("/auth/register");
+    router.push("/auth/signup");
   }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 to-indigo-400">

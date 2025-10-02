@@ -28,6 +28,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { useRouter } from "next/navigation"
+
 interface Proposal {
   id: string
   title: string
@@ -108,6 +110,12 @@ export default function DashboardPage() {
     return template.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())
   }
 
+  const router= useRouter();
+
+  const handleCreateProposal=()=>{
+    router.push("/create")
+  }
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "draft":
@@ -163,7 +171,7 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold text-gray-900">My Proposals</h1>
             <p className="text-gray-600 mt-1">Manage and track your proposal documents</p>
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button className="bg-blue-600 hover:bg-blue-700" onClick={handleCreateProposal}>
             <Plus className="h-4 w-4 mr-2" />
             New Proposal
           </Button>
