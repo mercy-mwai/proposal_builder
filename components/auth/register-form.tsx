@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import Divider from "../ui/divider";
 import { useState } from "react";
+import axios from "axios";
 
 interface LoginFormData {
   name: Text;
@@ -23,7 +24,7 @@ const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-
+  const [success, setSuccess]=useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -36,29 +37,24 @@ const handleSubmit=async (e: React.FormEvent)=>{
 e.preventDefault();
 setIsLoading(true);
 setError("");
-
 if(formData.password !== formData.confirmPassword){
     setError("Passwords do not match");
     setIsLoading(false);
     return
 }
 try{
-    const response= await fetch("http://127.0.0.1:8000/api/auth/register", {
-        method: "POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-            name:formData.name,
-            email:formData.email,
-            password:formData.password,
-            password_confirmation:formData.confirmPassword
-        })
-    });
-    const data= await response.json();
+  await axios.get("http://localhost:8000/sanctum/csrf-cookie",{
+    withCredentials:true
+  });
+  const response= await axios.post(
+    "http://localhost:8000/api/auth/register",
+    formData,
+    {withCredentials:true}
+  );
+  const data= response.data;
+    
     if(data.success){
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user))
+        setSuccess(data.message || "Registered Successfully")
     }else{
         setError(data.message || "Registration Failed")
     }

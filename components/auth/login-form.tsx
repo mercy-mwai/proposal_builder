@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { Alert, AlertDescription } from "../ui/alert";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import axios from "axios";
 
 interface LoginFormData {
   email:string,
@@ -23,7 +24,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const [success, setSuccess]= useState("");
   const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,17 +40,18 @@ const LoginForm = () => {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+     await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+      withCredentials:true,
+     });
+     const response=await axios.post(
+      "http://localhost:8000/api/auth/login",
+      formData,
+      {withCredentials:true}
+     );
+     const data= response.data;
+
       if (data.success) {
-        localStorage.setItem("auth-token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        setSuccess(data.message || "Logged in successfully")
        const redirectUrl= localStorage.getItem("redirect_after_login")
        if(redirectUrl){
         localStorage.removeItem("redirect_after_login");
