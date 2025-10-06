@@ -44,7 +44,8 @@ const LoginForm = () => {
       withCredentials:true,
       headers:{
         'Accept': 'application/json'
-      }
+      },
+      withXSRFToken:true
     }
     try {
      await axios.get("http://localhost:8000/sanctum/csrf-cookie", config);
