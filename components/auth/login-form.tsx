@@ -39,14 +39,18 @@ const LoginForm = () => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    try {
-     await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+    const config={
       withCredentials:true,
-     });
+      headers:{
+        'Accept': 'application/json'
+      }
+    }
+    try {
+     await axios.get("http://localhost:8000/sanctum/csrf-cookie", config);
      const response=await axios.post(
       "http://localhost:8000/api/auth/login",
       formData,
-      {withCredentials:true}
+      config
      );
      const data= response.data;
 

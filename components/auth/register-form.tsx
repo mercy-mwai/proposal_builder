@@ -42,14 +42,18 @@ if(formData.password !== formData.confirmPassword){
     setIsLoading(false);
     return
 }
+const config={
+  withCredentials:true,
+  headers:{
+    'Accept':'application/json'
+  }
+}
 try{
-  await axios.get("http://localhost:8000/sanctum/csrf-cookie",{
-    withCredentials:true
-  });
+  await axios.get("http://localhost:8000/sanctum/csrf-cookie",config);
   const response= await axios.post(
     "http://localhost:8000/api/auth/register",
     formData,
-    {withCredentials:true}
+    config
   );
   const data= response.data;
     
