@@ -13,7 +13,6 @@ export default function HomePage() {
   }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 to-indigo-400">
-    
       <nav className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
