@@ -43,7 +43,8 @@ const LoginForm = () => {
     const config={
       withCredentials:true,
       headers:{
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
       },
       withXSRFToken:true
     }

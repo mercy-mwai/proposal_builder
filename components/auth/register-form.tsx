@@ -12,7 +12,7 @@ interface LoginFormData {
   name: Text;
   email: string;
   password: string;
-  confirmPassword: string;
+  password_confirmation: string;
 }
 
 const RegisterForm = () => {
@@ -20,7 +20,7 @@ const RegisterForm = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +38,7 @@ const handleSubmit=async (e: React.FormEvent)=>{
 e.preventDefault();
 setIsLoading(true);
 setError("");
-if(formData.password !== formData.confirmPassword){
+if(formData.password !== formData.password_confirmation){
     setError("Passwords do not match");
     setIsLoading(false);
     return
@@ -46,7 +46,8 @@ if(formData.password !== formData.confirmPassword){
 const config={
   withCredentials:true,
   headers:{
-    'Accept':'application/json'
+    'Accept':'application/json',
+    'Content-Type':'application/json'
   },
    withXSRFToken:true
 }
@@ -123,14 +124,14 @@ try{
               </Label>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">
+              <Label htmlFor="password_confirmation">
                 <div className="relative">
                   <Input
-                    id="confirmPassword"
-                    name="confirmPassword"
+                    id="password_confirmation"
+                    name="password_confirmation"
                     type="password"
                     placeholder="Confirm Your Password"
-                    value={formData.confirmPassword}
+                    value={formData.password_confirmation}
                     onChange={handleInputChange}
                     required
                   />
