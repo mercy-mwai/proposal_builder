@@ -49,97 +49,66 @@ export function GeneralConsultingTemplate({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-r from-teal-600 to-blue-700 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">
-              Professional Consulting Proposal Template
-            </h1>
-            <p className="text-xl mb-6">
-              Comprehensive template for all consulting services
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Dialog open={isDownloadOpen} onOpenChange={setIsDownloadOpen}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="bg-white text-teal-600 hover:bg-gray-100"
-                  >
-                    <Download className="mr-2 h-5 w-5" />
-                    Download Template
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Get Your Template</DialogTitle>
-                  </DialogHeader>
-                  <form onSubmit={handleDownload} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="firstName">First Name</Label>
-                        <Input
-                          id="firstName"
-                          value={downloadForm.firstName}
-                          onChange={(e) =>
-                            setDownloadForm({
-                              ...downloadForm,
-                              firstName: e.target.value,
-                            })
-                          }
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="lastName">Last Name</Label>
-                        <Input
-                          id="lastName"
-                          value={downloadForm.lastName}
-                          onChange={(e) =>
-                            setDownloadForm({
-                              ...downloadForm,
-                              lastName: e.target.value,
-                            })
-                          }
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={downloadForm.email}
-                        onChange={(e) =>
-                          setDownloadForm({
-                            ...downloadForm,
-                            email: e.target.value,
-                          })
-                        }
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full">
-                      Send Template to Email
-                    </Button>
-                  </form>
-                </DialogContent>
-              </Dialog>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white text-white hover:bg-white hover:text-teal-600"
-              >
-                <User className="mr-2 h-5 w-5" />
-                Use Template Builder
-              </Button>
+      <Dialog open={isDownloadOpen} onOpenChange={setIsDownloadOpen}>
+        <DialogTrigger asChild>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Get Your Template</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleDownload} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="firstName">First Name</Label>
+                <Input
+                  id="firstName"
+                  value={downloadForm.firstName}
+                  onChange={(e) =>
+                    setDownloadForm({
+                      ...downloadForm,
+                      firstName: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName">Last Name</Label>
+                <Input
+                  id="lastName"
+                  value={downloadForm.lastName}
+                  onChange={(e) =>
+                    setDownloadForm({
+                      ...downloadForm,
+                      lastName: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+            <div>
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                value={downloadForm.email}
+                onChange={(e) =>
+                  setDownloadForm({
+                    ...downloadForm,
+                    email: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Send Template to Email
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
@@ -184,7 +153,7 @@ export function GeneralConsultingTemplate({
 
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-r from-teal-600 to-blue-700 text-white p-8 text-center">
+              <div className="bg-black text-white p-8 text-center">
                 <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
                 <p className="text-xl mb-6">
                   Professional Consulting Services Proposal
@@ -653,7 +622,36 @@ export function GeneralConsultingTemplate({
             </div>
           </div>
         </div>
+        
       </div>
+      <div className="bg-gray-600 text-white py-16 rounded-lg mt-8 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold mb-4">
+              Business Strategy Proposal Template
+            </h1>
+            <p className="text-xl mb-6">
+              A comprehensive plan for sustainable growth and operational
+              excellence
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => setIsDownloadOpen(true)}
+                className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Download Template
+              </button>
+              <a
+                href="#"
+                onClick={handleDownload}
+                className="bg-transparent border border-white text-white hover:bg-white hover:text-indigo-600 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+              >
+                <User className="mr-2 h-5 w-5" />
+                Use Template Builder
+              </a>
+            </div>
+          </div>
+        </div>
     </div>
   );
 }

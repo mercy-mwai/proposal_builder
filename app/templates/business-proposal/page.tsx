@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Briefcase, TrendingUp, Building, DollarSign, Users, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 const businessTemplates = [
   {
@@ -77,6 +78,12 @@ const businessTemplates = [
 ]
 
 export default function BusinessProposalsPage() {
+  const router=useRouter();
+
+  const handleClick=()=>{
+    router.push("/create")
+  }
+
   const [selectedCategory, setSelectedCategory] = useState("All")
 
   const categories = ["All", ...Array.from(new Set(businessTemplates.map((template) => template.category)))]
@@ -154,7 +161,7 @@ export default function BusinessProposalsPage() {
           })}
         </div>
 
-        {/* Call to Action */}
+       
         <div className="mt-12 text-center">
           <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-8 text-white">
             <h2 className="text-2xl font-bold mb-4">Need a Custom Template?</h2>
@@ -162,7 +169,7 @@ export default function BusinessProposalsPage() {
               Can't find exactly what you're looking for? We can create a custom proposal template tailored to your
               specific business needs.
             </p>
-            <Button size="lg" variant="secondary">
+            <Button size="lg" variant="secondary" onClick={handleClick}>
               Request Custom Template
             </Button>
           </div>

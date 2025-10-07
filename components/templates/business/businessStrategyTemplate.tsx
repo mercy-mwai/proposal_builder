@@ -10,33 +10,34 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Download,
   User,
   TrendingUp,
-  Rocket,
   Compass,
-  Sparkles,
+  Target,  
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-interface DigitalMarketingTemplateProps {
+
+interface BusinessStrategyTemplateProps {
   clientName?: string;
   companyName?: string;
   agencyName?: string;
   projectTitle?: string;
-  monthlyBudget?: string;
-  campaignDuration?: string;
+  timeline?: string;
+  totalInvestment?: string;
 }
 
-export default function DigitalMarketingTemplate({
+export default function BusinessStrategyProposalTemplate({
   clientName = "{{client_name}}",
   companyName = "{{company_name}}",
   agencyName = "{{agency_name}}",
   projectTitle = "{{project_title}}",
-  monthlyBudget = "{{monthly_budget}}",
-  campaignDuration = "{{campaign_duration}}",
-}: DigitalMarketingTemplateProps) {
+  timeline = "{{timeline}}",
+  totalInvestment = "{{total_investment}}",
+}: BusinessStrategyTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
     firstName: "",
     lastName: "",
@@ -114,51 +115,53 @@ export default function DigitalMarketingTemplate({
           </form>
         </DialogContent>
       </Dialog>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
-            <div className="bg-gradient-gray-500 rounded-lg p-6 sticky top-8">
+            <div className="bg-gray-200 rounded-lg p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                🚀 Marketing Guide
+                🎯 Strategy Guide
               </h3>
 
               <div className="space-y-4 text-sm text-gray-600">
                 <div>
                   <h4 className="font-medium text-gray-800">
-                    Campaign Strategy
+                    Vision & Mission
                   </h4>
                   <p>
-                    Focus on data-driven approaches that align with business
-                    objectives and target audience behavior.
+                    Define a clear, inspiring vision and an actionable mission
+                    statement to guide all strategic efforts.
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-medium text-gray-800">
-                    Multi-Channel Approach
+                    Comprehensive Analysis
                   </h4>
                   <p>
-                    Integrate SEO, PPC, social media, and content marketing for
-                    maximum reach and impact.
+                    Utilize frameworks like SWOT, PESTEL, and Porter's Five
+                    Forces to understand internal and external landscapes.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-medium text-gray-800">ROI Tracking</h4>
+                  <h4 className="font-medium text-gray-800">KPI Alignment</h4>
                   <p>
-                    Establish clear KPIs and tracking mechanisms to measure
-                    campaign success and optimize performance.
+                    Establish key performance indicators (KPIs) that directly
+                    measure progress toward strategic goals and objectives.
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-gray-700 text-white p-8 text-center">
                 <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
                 <p className="text-xl mb-6">
-                  Digital Marketing Strategy & Campaign Management
+                  Strategic Blueprint for Long-Term Value Creation
                 </p>
                 <div className="text-lg">
                   <p>
@@ -184,26 +187,31 @@ export default function DigitalMarketingTemplate({
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-4">Dear {clientName},</p>
                   <p className="mb-4">
-                    In today's digital landscape, {companyName} has tremendous
-                    opportunities to expand its market reach and drive
-                    sustainable growth through strategic digital marketing
-                    initiatives.
+                    The leadership team at {companyName} recognizes the need for
+                    a refreshed **{"{{Business Strategy}}"}** to navigate market
+                    shifts and capture new opportunities for sustainable,
+                    long-term growth.
                   </p>
                   <p className="mb-4">
-                    Our comprehensive digital marketing approach combines
-                    data-driven strategies, creative excellence, and performance
-                    optimization to deliver measurable results that align with
-                    your business objectives.
+                    This proposal outlines a collaborative approach to develop a
+                    robust, **{timeline} Strategic Plan** that aligns your
+                    organizational capabilities with clear market advantage and
+                    defines key initiatives to maximize shareholder and
+                    stakeholder value.
                   </p>
-                  <div className="bg-orange-50 p-4 rounded-lg">
-                    <h3 className="font-semibold text-orange-800 mb-2">
-                      Expected Outcomes:
+                  <div className="bg-indigo-50 p-4 rounded-lg">
+                    <h3 className="font-semibold text-indigo-800 mb-2">
+                      Key Objectives of This Strategy:
                     </h3>
-                    <ul className="list-disc list-inside text-orange-700 space-y-1">
-                      <li>Increase website traffic by 150-200%</li>
-                      <li>Improve lead generation by 75-100%</li>
-                      <li>Boost brand awareness and engagement</li>
-                      <li>Achieve 4:1 minimum ROI on ad spend</li>
+                    <ul className="list-disc list-inside text-indigo-700 space-y-1">
+                      <li>
+                        Clarify and articulate the core value proposition.
+                      </li>
+                      <li>Identify 3-5 high-impact strategic growth areas.</li>
+                      <li>
+                        Optimize operating model for efficiency and scale.
+                      </li>
+                      <li>Establish a clear, measurable execution roadmap.</li>
                     </ul>
                   </div>
                 </div>
@@ -226,18 +234,18 @@ export default function DigitalMarketingTemplate({
                     marginBottom: "1rem",
                   }}
                 >
-                  Current Situation Analysis
+                  Current State and Strategic Gaps
                 </h2>
                 <h3
                   style={{
                     fontSize: "1.5rem",
                     fontWeight: "600",
-                    color: "#3498db",
+                    color: "#5f7da5",
                     marginTop: "2rem",
                     marginBottom: "1rem",
                   }}
                 >
-                  Challenges We've Identified
+                  Internal Challenges and Strategic Gaps
                 </h3>
                 <p
                   style={{
@@ -247,9 +255,9 @@ export default function DigitalMarketingTemplate({
                     marginBottom: "1.5rem",
                   }}
                 >
-                  Based on our initial analysis of your business, we've
-                  identified several key challenges that are limiting your
-                  digital growth:
+                  Based on our initial conversations and high-level assessment,
+                  we have identified core strategic challenges hindering your
+                  potential:
                 </p>
                 <ul
                   style={{
@@ -259,16 +267,18 @@ export default function DigitalMarketingTemplate({
                   }}
                 >
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Limited online visibility in search results
+                    Unclear prioritization across multiple competing initiatives
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Inconsistent social media presence and engagement
+                    Inefficient resource allocation due to departmental silos
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Lack of targeted lead generation strategies
+                    Lack of a standardized process for market opportunity
+                    assessment and entry
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Minimal conversion optimization on existing digital assets
+                    Operating model not fully optimized for current or future
+                    scale
                   </li>
                 </ul>
 
@@ -276,12 +286,12 @@ export default function DigitalMarketingTemplate({
                   style={{
                     fontSize: "1.5rem",
                     fontWeight: "600",
-                    color: "#3498db",
+                    color: "#5f7da5",
                     marginTop: "2rem",
                     marginBottom: "1rem",
                   }}
                 >
-                  Market Opportunities
+                  Market and Competitive Landscape
                 </h3>
                 <p
                   style={{
@@ -291,80 +301,90 @@ export default function DigitalMarketingTemplate({
                     marginBottom: "1.5rem",
                   }}
                 >
-                  The your industry presents significant digital marketing
-                  opportunities. With 73% of consumers researching online before
-                  making purchasing decisions, there's tremendous potential to
-                  capture market share through strategic digital marketing.
+                  The **{"{{companyName}}"}** industry is experiencing rapid
+                  transformation, driven by technological advancements and
+                  shifting customer expectations. Our analysis reveals
+                  opportunities in [Specific Market Segment] and a clear threat
+                  from [Competitive Factor]. A proactive strategy is essential
+                  to secure market leadership.
                 </p>
               </section>
 
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Our Digital Marketing Strategy
+                  Our Business Strategy Framework
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    We propose a comprehensive {campaignDuration} digital
-                    marketing campaign focused on driving qualified traffic,
-                    generating leads, and increasing conversions.
+                    We propose a comprehensive, **{"{{timeline}}"} Strategic
+                    Blueprint** structured around three core pillars to ensure
+                    holistic and sustainable value creation for {companyName}.
                   </p>
 
                   <div className="space-y-6">
                     <div className="bg-blue-50 p-6 rounded-lg">
                       <h3 className="font-semibold text-blue-800 mb-3">
-                        🔍 Search Engine Optimization (SEO)
+                        ⚡ Strategic Pillar 1: Market Expansion & Growth (The
+                        "What")
                       </h3>
                       <ul className="list-disc list-inside text-blue-700 space-y-1 text-sm">
-                        <li>Comprehensive keyword research and strategy</li>
-                        <li>On-page optimization and technical SEO</li>
-                        <li>Content creation and optimization</li>
-                        <li>Local SEO and Google My Business optimization</li>
+                        <li>
+                          Define new market entry strategies and M&A screening
+                          criteria
+                        </li>
+                        <li>
+                          Identify and prioritize high-potential customer
+                          segments
+                        </li>
+                        <li>
+                          Develop a roadmap for product/service innovation and
+                          differentiation
+                        </li>
                       </ul>
                     </div>
 
                     <div className="bg-green-50 p-6 rounded-lg">
                       <h3 className="font-semibold text-green-800 mb-3">
-                        💰 Pay-Per-Click Advertising (PPC)
+                        🛡️ Strategic Pillar 2: Operational Excellence (The
+                        "How")
                       </h3>
                       <ul className="list-disc list-inside text-green-700 space-y-1 text-sm">
-                        <li>Google Ads campaign setup and management</li>
-                        <li>Facebook and Instagram advertising</li>
-                        <li>LinkedIn advertising for B2B targeting</li>
                         <li>
-                          Retargeting campaigns for conversion optimization
+                          Assess and re-engineer critical business processes
+                          (e.g., supply chain)
+                        </li>
+                        <li>
+                          Implement performance management and KPI dashboards
+                        </li>
+                        <li>
+                          Identify cost reduction and efficiency opportunities
                         </li>
                       </ul>
                     </div>
 
                     <div className="bg-purple-50 p-6 rounded-lg">
                       <h3 className="font-semibold text-purple-800 mb-3">
-                        📱 Social Media Marketing
+                        🏗️ Strategic Pillar 3: Organizational Alignment (The
+                        "Who")
                       </h3>
                       <ul className="list-disc list-inside text-purple-700 space-y-1 text-sm">
-                        <li>Social media strategy and content calendar</li>
-                        <li>Community management and engagement</li>
-                        <li>Influencer partnerships and collaborations</li>
-                        <li>Social media advertising and promotion</li>
-                      </ul>
-                    </div>
-
-                    <div className="bg-orange-50 p-6 rounded-lg">
-                      <h3 className="font-semibold text-orange-800 mb-3">
-                        📝 Content Marketing
-                      </h3>
-                      <ul className="list-disc list-inside text-orange-700 space-y-1 text-sm">
-                        <li>Blog content strategy and creation</li>
-                        <li>Video marketing and production</li>
-                        <li>Email marketing campaigns</li>
-                        <li>Lead magnets and downloadable resources</li>
+                        <li>
+                          Future-state organizational design and governance
+                          model
+                        </li>
+                        <li>Identify key talent and capability gaps</li>
+                        <li>
+                          Develop change management and communication plan
+                        </li>
                       </ul>
                     </div>
                   </div>
                 </div>
+
                 <div className="digital-marketing">
                   <img
-                    src="/assets/image/digitalMarketing.png"
-                    alt="digital-marketing"
+                    src="/assets/image/businessStrategyModel.png"
+                    alt="business-strategy-model"
                     style={{
                       maxWidth: "100%",
                       marginTop: "20px",
@@ -375,29 +395,29 @@ export default function DigitalMarketingTemplate({
 
               <div className="p-8 border-b bg-white rounded-lg shadow-sm">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Project Timeline & Milestones
+                  Project Timeline & Key Phases
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p>
-                    Our digital marketing implementation follows a strategic
-                    timeline designed to build momentum and deliver results
-                    progressively.
+                    Our engagement is structured into clear phases to ensure
+                    rapid momentum and stakeholder alignment at every critical
+                    juncture.
                   </p>
                   <div className="space-y-4 mt-8">
                     <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm">
                       <div
                         className={`flex-shrink-0 bg-indigo-500 text-white rounded-full w-10 h-10 flex items-center justify-center`}
                       >
-                        <Sparkles className="h-6 w-6 text-white" />
+                        <Compass className="h-6 w-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg text-gray-900 mb-1">
-                          Foundation & Setup
+                          Phase 1: Discovery & Analysis (Weeks 1-4)
                         </h3>
                         <p className="text-sm text-gray-600">
-                          Complete website audit, keyword research, set up
-                          tracking systems, launch initial PPC campaigns, and
-                          begin content creation.
+                          Comprehensive internal interviews, market analysis,
+                          data gathering, and current state assessment. Finalize
+                          strategic questions.
                         </p>
                       </div>
                     </div>
@@ -405,16 +425,16 @@ export default function DigitalMarketingTemplate({
                       <div
                         className={`flex-shrink-0 bg-emerald-500 text-white rounded-full w-10 h-10 flex items-center justify-center`}
                       >
-                        <TrendingUp className="h-6 w-6 text-white" />
+                        <Target className="h-6 w-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg text-gray-900 mb-1">
-                          Optimization & Expansion
+                          Phase 2: Strategy Formulation (Weeks 5-8)
                         </h3>
                         <p className="text-sm text-gray-600">
-                          Optimize based on initial data, expand successful
-                          campaigns, increase content production, and implement
-                          email marketing automation.
+                          Develop strategic pillars, prioritize options, define
+                          target operating model, and establish financial
+                          projections.
                         </p>
                       </div>
                     </div>
@@ -422,33 +442,16 @@ export default function DigitalMarketingTemplate({
                       <div
                         className={`flex-shrink-0 bg-amber-500 text-white rounded-full w-10 h-10 flex items-center justify-center`}
                       >
-                        <Compass className="h-6 w-6 text-white" />
+                        <TrendingUp className="h-6 w-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg text-gray-900 mb-1">
-                          Growth & Refinement
+                          Phase 3: Roadmap & Execution (Weeks 9-12)
                         </h3>
                         <p className="text-sm text-gray-600">
-                          Scale high-performing campaigns, implement advanced
-                          targeting, launch retargeting campaigns, and optimize
-                          conversion funnels.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm">
-                      <div
-                        className={`flex-shrink-0 bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center`}
-                      >
-                        <Rocket className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg text-gray-900 mb-1">
-                          Sustained Growth
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Focus on sustainable growth, advanced SEO strategies,
-                          brand building, and continuous optimization based on
-                          performance data.
+                          Create the **{"{{timeline}}"} Implementation
+                          Roadmap**, define KPIs, develop a governance
+                          structure, and present the final strategic blueprint.
                         </p>
                       </div>
                     </div>
@@ -458,101 +461,96 @@ export default function DigitalMarketingTemplate({
 
               <div className="p-8 border-b bg-white rounded-lg shadow-sm mb-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Investment & Pricing
+                  Investment & Services
                 </h2>
                 <p className="text-base text-gray-600 mb-6">
-                  Our digital marketing services are structured to provide
-                  maximum value and measurable ROI. Below is our comprehensive
-                  pricing breakdown:
+                  Our consulting services are structured to deliver maximum
+                  strategic clarity and hands-on support for implementation.
                 </p>
                 <div className="mt-6">
                   <div className="bg-gray-200 p-4 rounded-t-lg font-bold text-gray-800">
-                    <h3>Digital Marketing Service Packages</h3>
+                    <h3>Strategic Consulting Packages</h3>
                   </div>
                   <div className="grid grid-cols-3 gap-4 p-4 font-bold text-gray-700 border-b border-gray-300">
-                    <span>Service</span>
-                    <span>Monthly Fee</span>
-                    <span>Setup Fee</span>
+                    <span>Service Component</span>
+                    <span>Fee (Lump Sum)</span>
+                    <span>Team Allocation (Weeks)</span>
                   </div>
                   <div className="grid grid-cols-3 gap-4 p-4 border-b border-gray-200">
-                    <span>SEO Optimization & Management</span>
-                    <span>$2,500</span>
-                    <span>$1,500</span>
+                    <span>Phase 1: Discovery & Analysis</span>
+                    <span>$25,000</span>
+                    <span>4 Weeks</span>
                   </div>
                   <div className="grid grid-cols-3 gap-4 p-4 border-b border-gray-200">
-                    <span>PPC Campaign Management</span>
-                    <span>$1,800</span>
-                    <span>$800</span>
+                    <span>Phase 2: Strategy Formulation</span>
+                    <span>$40,000</span>
+                    <span>4 Weeks</span>
                   </div>
                   <div className="grid grid-cols-3 gap-4 p-4 border-b border-gray-200">
-                    <span>Social Media Marketing</span>
-                    <span>$1,200</span>
-                    <span>$500</span>
+                    <span>Phase 3: Roadmap & Execution</span>
+                    <span>$35,000</span>
+                    <span>4 Weeks</span>
                   </div>
                   <div className="grid grid-cols-3 gap-4 p-4 border-b border-gray-200">
-                    <span>Content Marketing</span>
-                    <span>$1,500</span>
-                    <span>$600</span>
+                    <span>Implementation Support (Optional)</span>
+                    <span>$15,000 / month</span>
+                    <span>On Demand</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 p-4 border-b border-gray-200">
-                    <span>Email Marketing</span>
-                    <span>$800</span>
-                    <span>$400</span>
-                  </div>
+
                   <div className="grid grid-cols-3 gap-4 p-4 bg-gray-100 font-bold rounded-b-lg">
-                    <span>Complete Package (20% Discount)</span>
-                    <span>$6,240</span>
-                    <span>$2,880</span>
+                    <span>Total Strategy Investment</span>
+                    <span>{totalInvestment}</span>
+                    <span>12 Weeks (Core)</span>
                   </div>
                 </div>
                 <p className="mt-6 text-base text-gray-600">
-                  <strong className="font-semibold">Ad Spend:</strong>{" "}
-                  Recommended monthly ad spend of $5,000 (managed separately,
-                  billed directly by platforms)
+                  <strong className="font-semibold">Payment Terms:</strong>{" "}
+                  Invoices issued at the start of each phase (3 payments).
                 </p>
                 <p className="text-base text-gray-600 mt-2">
                   <strong className="font-semibold">Contract Terms:</strong>{" "}
-                  12-month agreement with 30-day payment terms
+                  12-week minimum engagement for the core strategy development.
                 </p>
               </div>
 
               <div className="p-8 border-b bg-white rounded-lg shadow-sm mb-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Expected Results & ROI
+                  Expected Deliverables & Value
                 </h2>
                 <p className="text-base text-gray-600 mb-6">
-                  Based on our experience with similar businesses and current
-                  market conditions, here are the results you can expect:
+                  The primary outcome of this engagement is a clear, actionable
+                  strategic plan that drives both near-term wins and long-term
+                  value creation.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-gray-200 p-6 rounded-lg shadow-sm ">
                     <h4 className="font-semibold text-lg text-gray-900 mb-2">
-                      3-Month Goals
+                      Core Deliverables
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-                      <li>50% increase in organic website traffic</li>
-                      <li>25 new qualified leads per month</li>
-                      <li>3:1 ROI on PPC campaigns</li>
+                      <li>Final Strategic Blueprint Document</li>
+                      <li>Detailed Implementation Roadmap</li>
+                      <li>Strategic Financial Model</li>
                     </ul>
                   </div>
                   <div className="bg-gray-200 p-6 rounded-lg shadow-sm">
                     <h4 className="font-semibold text-lg text-gray-900 mb-2">
-                      6-Month Goals
+                      Strategic Impact
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-                      <li>100% increase in organic traffic</li>
-                      <li>50 new qualified leads per month</li>
-                      <li>4:1 ROI on total marketing spend</li>
+                      <li>50% increase in operational efficiency</li>
+                      <li>Clear prioritization of business units</li>
+                      <li>Identified path to **15-20% YOY** revenue growth</li>
                     </ul>
                   </div>
                   <div className="bg-gray-200 p-6 rounded-lg shadow-sm">
                     <h4 className="font-semibold text-lg text-gray-900 mb-2">
-                      12-Month Goals
+                      Organizational Value
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-                      <li>200% increase in organic traffic</li>
-                      <li>100 new qualified leads per month</li>
-                      <li>5:1 ROI on total marketing investment</li>
+                      <li>Full leadership alignment on the strategy</li>
+                      <li>Metrics established for strategy tracking</li>
+                      <li>Empowered team with clear priorities</li>
                     </ul>
                   </div>
                 </div>
@@ -560,52 +558,57 @@ export default function DigitalMarketingTemplate({
 
               <div className="p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Ready to Get Started?
+                  Partner with Us for Success
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    Let's transform {companyName}'s digital presence and drive
-                    measurable growth through strategic marketing initiatives.
+                    {companyName}'s next phase of growth requires a focused,
+                    insight-driven strategy. {agencyName} is ready to partner
+                    with you to build this future.
                   </p>
 
-                  <div className="bg-orange-50 p-6 rounded-lg">
-                    <h3 className="font-semibold text-orange-800 mb-4">
-                      Next Steps:
+                  <div className="bg-indigo-50 p-6 rounded-lg">
+                    <h3 className="font-semibold text-indigo-800 mb-4">
+                      Next Steps to Strategy Kickoff:
                     </h3>
-                    <ol className="list-decimal list-inside space-y-2 text-orange-700">
-                      <li>Schedule a strategy call to discuss your goals</li>
-                      <li>Finalize campaign objectives and budget</li>
-                      <li>Sign the marketing services agreement</li>
-                      <li>Begin campaign setup and launch</li>
+                    <ol className="list-decimal list-inside space-y-2 text-indigo-700">
+                      <li>Schedule a final Q&A session with the partners</li>
+                      <li>Approve the Strategic Consulting Agreement</li>
+                      <li>
+                        Mobilize the joint {agencyName}/{companyName} project
+                        team
+                      </li>
+                      <li>Commence Phase 1: Discovery & Analysis</li>
                     </ol>
                   </div>
 
                   <div className="mt-6 text-center">
                     <p className="mb-4">
-                      Ready to accelerate your digital growth?
+                      Ready to build your next strategic advantage?
                     </p>
                     <div className="space-y-2">
                       <p className="font-semibold">{agencyName}</p>
-                      <p>Digital Marketing Specialists</p>
-                      <p>Email: hello@agency.com</p>
+                      <p>Strategic Consulting Partners</p>
+                      <p>Email: strategy@agency.com</p>
                       <p>Phone: 07890986568</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gray-500 text-white py-16 rounded-lg mt-8 text-center">
+              <div className="bg-gray-600 text-white py-16 rounded-lg mt-8 text-center">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <h1 className="text-3xl font-bold mb-4">
-                    Digital Marketing Proposal Template
+                    Business Strategy Proposal Template
                   </h1>
                   <p className="text-xl mb-6">
-                    Drive growth with data-driven marketing strategies
+                    A comprehensive plan for sustainable growth and operational
+                    excellence
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
                       onClick={() => setIsDownloadOpen(true)}
-                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+                      className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
                     >
                       <Download className="mr-2 h-5 w-5" />
                       Download Template
@@ -613,7 +616,7 @@ export default function DigitalMarketingTemplate({
                     <a
                       href="#"
                       onClick={handleDownload}
-                      className="bg-transparent border border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+                      className="bg-transparent border border-white text-white hover:bg-white hover:text-indigo-600 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
                     >
                       <User className="mr-2 h-5 w-5" />
                       Use Template Builder

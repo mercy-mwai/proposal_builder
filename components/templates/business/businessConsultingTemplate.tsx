@@ -1,5 +1,18 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+import {  useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Download,User } from "lucide-react";
+
 interface BusinessConsultingProposalProps {
   proposalName?: string
   clientName?: string
@@ -27,6 +40,18 @@ export default function BusinessConsultingProposal({
   userEmail = "{user_email}",
   pageNumber = "{page_number}",
 }: BusinessConsultingProposalProps) {
+  const [downloadForm,setDownloadForm]= useState({
+    firstName:"",
+    lastName:"",
+    email:""
+  });
+  const [isDownloadOpen,setIsDownloadOpen]= useState(false);
+  const router=useRouter();
+  const handleDownload=(e:React.FormEvent)=>{
+    router.push("/auth/login");
+    e.preventDefault();
+    setIsDownloadOpen(false);
+  }
   return (
     <>
       <style jsx>{`
@@ -57,7 +82,7 @@ export default function BusinessConsultingProposal({
 
         .explanation-panel {
           width: 35%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: black;
           color: white;
           padding: 2rem;
           position: sticky;
@@ -319,7 +344,7 @@ export default function BusinessConsultingProposal({
       <div className="proposal-container">
         <div className="container">
           <div className="two-column-layout">
-            {/* Explanation Panel */}
+            
             <div className="explanation-panel">
               <h3>📋 Proposal Guide</h3>
               <p>
@@ -373,7 +398,66 @@ export default function BusinessConsultingProposal({
 
            
             <div className="proposal-content">
-              
+              <Dialog open={isDownloadOpen} onOpenChange={setIsDownloadOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Get Your Template</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleDownload} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="firstName">First Name</Label>
+                <Input
+                  id="firstName"
+                  value={downloadForm.firstName}
+                  onChange={(e) =>
+                    setDownloadForm({
+                      ...downloadForm,
+                      firstName: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName">Last Name</Label>
+                <Input
+                  id="lastName"
+                  value={downloadForm.lastName}
+                  onChange={(e) =>
+                    setDownloadForm({
+                      ...downloadForm,
+                      lastName: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                value={downloadForm.email}
+                onChange={(e) =>
+                  setDownloadForm({
+                    ...downloadForm,
+                    email: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700"
+            >
+              Send Template to Email
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
               <div className="proposal-header">
                 <h1 className="proposal-title">Consulting You Can Count On</h1>
                 <p className="proposal-subtitle">Strategic Business Consulting Proposal</p>
@@ -830,7 +914,6 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Signature Area */}
               <section className="section" id="signature">
                 <h2 className="section-title">Agreement Signature</h2>
                 <div className="signature-area">
@@ -868,21 +951,34 @@ export default function BusinessConsultingProposal({
                 </div>
               </section>
 
-              {/* Footer */}
-              <footer
-                style={{
-                  textAlign: "center",
-                  padding: "2rem",
-                  borderTop: "2px solid #ecf0f1",
-                  marginTop: "3rem",
-                  color: "#7f8c8d",
-                }}
-              >
-                <p>
-                  <span className="variable">{proposalName}</span> | <span className="variable">{clientName}</span> |
-                  Page <span className="variable">{pageNumber}</span>
-                </p>
-              </footer>
+              <div className="bg-black text-white py-16 rounded-lg mt-8 text-center">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <h1 className="text-3xl font-bold mb-4">
+                    Business Strategy Proposal Template
+                  </h1>
+                  <p className="text-xl mb-6">
+                    A comprehensive plan for sustainable growth and operational
+                    excellence
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={() => setIsDownloadOpen(true)}
+                      className="bg-white text-gray-800 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+                    >
+                      <Download className="mr-2 h-5 w-5" />
+                      Download Template
+                    </button>
+                    <a
+                      href="#"
+                      onClick={handleDownload}
+                      className="bg-transparent border border-white text-white hover:bg-white hover:text-gray-600 font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-center"
+                    >
+                      <User className="mr-2 h-5 w-5" />
+                      Use Template Builder
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
