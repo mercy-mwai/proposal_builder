@@ -7,6 +7,8 @@ export interface TemplateField{
     placeholder: string
     required:boolean
 }
+
+
 export const templateFields: Record<string ,TemplateField[]> ={
     "business proposal":[
         {
