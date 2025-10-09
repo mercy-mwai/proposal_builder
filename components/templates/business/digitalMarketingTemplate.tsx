@@ -20,6 +20,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import EditableField from "../EditableField";
+
+
 interface DigitalMarketingTemplateProps {
   clientName?: string;
   companyName?: string;
@@ -27,6 +30,8 @@ interface DigitalMarketingTemplateProps {
   projectTitle?: string;
   monthlyBudget?: string;
   campaignDuration?: string;
+  userEmail?:string;
+  userPhone?:string;
 }
 
 export default function DigitalMarketingTemplate({
@@ -34,8 +39,10 @@ export default function DigitalMarketingTemplate({
   companyName = "{{company_name}}",
   agencyName = "{{agency_name}}",
   projectTitle = "{{project_title}}",
-  monthlyBudget = "{{monthly_budget}}",
   campaignDuration = "{{campaign_duration}}",
+  userEmail ="{{user_email}}",
+  userPhone ="{{user_phone}}",
+
 }: DigitalMarketingTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
     firstName: "",
@@ -156,22 +163,30 @@ export default function DigitalMarketingTemplate({
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-gray-700 text-white p-8 text-center">
-                <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                  <EditableField label="Project title" defaultValue={projectTitle} />
+                </h1>
                 <p className="text-xl mb-6">
                   Digital Marketing Strategy & Campaign Management
                 </p>
                 <div className="text-lg">
                   <p>
                     Prepared for:{" "}
-                    <span className="font-semibold">{clientName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="Client Name" defaultValue={clientName} />
+                    </span>
                   </p>
                   <p>
                     Company:{" "}
-                    <span className="font-semibold">{companyName}</span>
+                    <span className="font-semibold">
+                       <EditableField label="Company Name" defaultValue={companyName} />
+                    </span>
                   </p>
                   <p className="mt-4">
                     Prepared by:{" "}
-                    <span className="font-semibold">{agencyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="Agency Name" defaultValue={agencyName} />
+                    </span>
                   </p>
                   <p className="mt-4">{new Date().toLocaleDateString()}</p>
                 </div>
@@ -182,9 +197,9 @@ export default function DigitalMarketingTemplate({
                   Executive Summary
                 </h2>
                 <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">Dear {clientName},</p>
+                  <p className="mb-4">Dear <EditableField label="Client Name" defaultValue={clientName} /></p>
                   <p className="mb-4">
-                    In today's digital landscape, {companyName} has tremendous
+                    In today's digital landscape, <EditableField label="Company name" defaultValue={companyName} /> has tremendous
                     opportunities to expand its market reach and drive
                     sustainable growth through strategic digital marketing
                     initiatives.
@@ -304,7 +319,7 @@ export default function DigitalMarketingTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    We propose a comprehensive {campaignDuration} digital
+                    We propose a comprehensive <EditableField label="Campaign Duration" defaultValue={campaignDuration} /> digital
                     marketing campaign focused on driving qualified traffic,
                     generating leads, and increasing conversions.
                   </p>
@@ -564,7 +579,7 @@ export default function DigitalMarketingTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    Let's transform {companyName}'s digital presence and drive
+                    Let's transform <EditableField label="Company Name" defaultValue={companyName} />'s digital presence and drive
                     measurable growth through strategic marketing initiatives.
                   </p>
 
@@ -585,10 +600,16 @@ export default function DigitalMarketingTemplate({
                       Ready to accelerate your digital growth?
                     </p>
                     <div className="space-y-2">
-                      <p className="font-semibold">{agencyName}</p>
+                      <p className="font-semibold">
+                        <EditableField label="Agency Name" defaultValue={agencyName} />
+                      </p>
                       <p>Digital Marketing Specialists</p>
-                      <p>Email: hello@agency.com</p>
-                      <p>Phone: 07890986568</p>
+                    <p>
+                      <EditableField label="user email"  defaultValue={userEmail}/>
+                    </p>
+                      <p>
+                        <EditableField label="User phone" defaultValue={userPhone} />
+                      </p>
                     </div>
                   </div>
                 </div>

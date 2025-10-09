@@ -359,9 +359,9 @@ export default function HRConsultingTemplate({
                 </div>
 
                 <div className="digital-marketing">
-                  {/* Using a placeholder image/concept for the HR model */}
+                 
                   <img
-                    src="/assets/image/businessStrategyModel.png"
+                    src="/assets/image/hr-consulting.jpg"
                     alt="hr-consulting-model"
                     style={{
                       maxWidth: "100%",
