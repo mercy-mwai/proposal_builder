@@ -12,6 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Download,User } from "lucide-react";
+import EditableField from "../EditableField";
 
 interface BusinessConsultingProposalProps {
   proposalName?: string
@@ -467,21 +468,27 @@ export default function BusinessConsultingProposal({
               <div className="client-info">
                 <div>
                   <h4>Prepared For</h4>
-                  <p className="variable">{clientName}</p>
+                  <p className="variable"><EditableField label="Client Name" defaultValue={clientName} /></p>
                   <p className="variable">
-                    {clientContactFirst} {clientContactLast}
+                    <EditableField label='Client Contact First' defaultValue={clientContactFirst}/>
+                    <EditableField label="Client contact Last" defaultValue={clientContactLast}/>
                   </p>
                 </div>
                 <div>
                   <h4>Submitted By</h4>
-                  <p className="variable">{companyName}</p>
                   <p className="variable">
-                    {userAssigned}, {userTitle}
+                    <EditableField label="Company Name" defaultValue={companyName} />
+                  </p>
+                  <p className="variable">
+                   <EditableField label="User Assigned" defaultValue={userAssigned} />,
+                    <EditableField label="User Title" defaultValue={userTitle}/>
                   </p>
                 </div>
                 <div>
                   <h4>Date</h4>
-                  <p className="variable">{dateSubmitted}</p>
+                  <p className="variable">
+                    <EditableField label="Date Submitted" defaultValue={dateSubmitted} />
+                  </p>
                 </div>
               </div>
 
