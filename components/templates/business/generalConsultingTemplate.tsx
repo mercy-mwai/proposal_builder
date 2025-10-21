@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Download, User, Briefcase, Target, Users } from "lucide-react";
+import EditableField from "../EditableField";
 
 interface GeneralConsultingTemplateProps {
   clientName?: string;
@@ -23,6 +24,8 @@ interface GeneralConsultingTemplateProps {
   projectTitle?: string;
   totalInvestment?: string;
   projectDuration?: string;
+  userEmail?:string;
+  userPhone?:string;
 }
 
 export function GeneralConsultingTemplate({
@@ -33,6 +36,8 @@ export function GeneralConsultingTemplate({
   projectTitle = "{{project_title}}",
   totalInvestment = "{{total_investment}}",
   projectDuration = "{{project_duration}}",
+  userEmail="{{user_email}}",
+  userPhone="{{user_phone}}"
 }: GeneralConsultingTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
     firstName: "",
@@ -154,38 +159,48 @@ export function GeneralConsultingTemplate({
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-black text-white p-8 text-center">
-                <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                  <EditableField label="projectTitle" defaultValue={projectTitle} />
+                </h1>
                 <p className="text-xl mb-6">
                   Professional Consulting Services Proposal
                 </p>
                 <div className="text-lg">
                   <p>
                     Prepared for:{" "}
-                    <span className="font-semibold">{clientName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="clientName" defaultValue={clientName} />
+                    </span>
                   </p>
                   <p>
                     Organization:{" "}
-                    <span className="font-semibold">{companyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="companyName" defaultValue={companyName} />
+                    </span>
                   </p>
                   <p className="mt-4">
                     Prepared by:{" "}
-                    <span className="font-semibold">{consultantName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="consultantName" defaultValue={consultantName} />
+                    </span>
                   </p>
                   <p>{consultantTitle}</p>
                   <p className="mt-4">{new Date().toLocaleDateString()}</p>
                 </div>
               </div>
 
-              {/* Executive Summary */}
+             
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Executive Summary
                 </h2>
                 <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">Dear {clientName},</p>
+                  <p className="mb-4">Dear 
+                    <EditableField label="clientName" defaultValue={clientName} />
+                    ,</p>
                   <p className="mb-4">
                     Thank you for the opportunity to present our consulting
-                    services to {companyName}. We understand that your
+                    services to <EditableField label="companyName" defaultValue={companyName} />. We understand that your
                     organization is seeking expert guidance to navigate current
                     challenges and capitalize on emerging opportunities.
                   </p>
@@ -211,7 +226,6 @@ export function GeneralConsultingTemplate({
                 </div>
               </div>
 
-              {/* About Us */}
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   About Our Consulting Practice
@@ -276,7 +290,6 @@ export function GeneralConsultingTemplate({
                 </div>
               </div>
 
-              {/* Project Overview */}
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Project Overview
@@ -320,19 +333,23 @@ export function GeneralConsultingTemplate({
                       <h3 className="font-semibold text-blue-800 mb-2">
                         Project Duration
                       </h3>
-                      <p className="text-blue-700">{projectDuration}</p>
+                      <p className="text-blue-700">
+                        <EditableField label="projectDuration" defaultValue={projectDuration} />
+                      </p>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg">
                       <h3 className="font-semibold text-green-800 mb-2">
                         Total Investment
                       </h3>
-                      <p className="text-green-700">{totalInvestment}</p>
+                      <p className="text-green-700">
+                        <EditableField label="totalInvestment" defaultValue={totalInvestment} />
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Methodology */}
+              
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Our Consulting Methodology
@@ -432,7 +449,7 @@ export function GeneralConsultingTemplate({
                 </div>
               </div>
 
-              {/* Deliverables */}
+              
               <div className="p-8 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Key Deliverables
@@ -514,7 +531,7 @@ export function GeneralConsultingTemplate({
                   <div className="bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-lg mb-6">
                     <div className="text-center">
                       <h3 className="text-3xl font-bold text-teal-600 mb-2">
-                        {totalInvestment}
+                        <EditableField label="totalInvestment" defaultValue={totalInvestment} />
                       </h3>
                       <p className="text-gray-600">Total Project Investment</p>
                     </div>
@@ -579,7 +596,6 @@ export function GeneralConsultingTemplate({
                 </div>
               </div>
 
-              {/* Next Steps */}
               <div className="p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Next Steps
@@ -587,7 +603,8 @@ export function GeneralConsultingTemplate({
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
                     We're excited about the opportunity to partner with{" "}
-                    {companyName} and contribute to your continued success.
+                    <EditableField label="companyName" defaultValue={companyName} />
+                     and contribute to your continued success.
                   </p>
 
                   <div className="bg-teal-50 p-6 rounded-lg">
@@ -608,13 +625,16 @@ export function GeneralConsultingTemplate({
                       objectives.
                     </p>
                     <div className="space-y-2">
-                      <p className="font-semibold">{consultantName}</p>
-                      <p>{consultantTitle}</p>
+                      <p className="font-semibold"><EditableField label="consultantName" defaultValue={consultantName} /></p>
                       <p>
-                        Email: {consultantName.toLowerCase().replace(" ", ".")}
-                        @consulting.com
+                        <EditableField label="consultantTitle" defaultValue={consultantTitle} />
                       </p>
-                      <p>Phone: (555) 123-4567</p>
+                      <p>
+                        <EditableField label="userEmail" defaultValue={userEmail} />
+                      </p>
+                      <p>
+                        <EditableField label="userPhone" defaultValue={userPhone} />
+                      </p>
                     </div>
                   </div>
                 </div>
