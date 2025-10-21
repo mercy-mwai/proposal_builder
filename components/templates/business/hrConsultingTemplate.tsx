@@ -16,12 +16,13 @@ import {
   Download,
   User,
   Target,
-  Users, // Organizational Design/HR
-  Briefcase, // Talent Management
-  Heart, // Culture
-  BarChart, // Performance
+  Users, 
+  Briefcase, 
+  Heart, 
+  BarChart, 
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import EditableField from "../EditableField";
 
 interface HRConsultingTemplateProps {
   clientName?: string;
@@ -30,6 +31,8 @@ interface HRConsultingTemplateProps {
   projectTitle?: string;
   timeline?: string;
   totalInvestment?: string;
+  userEmail?:string;
+  userPhone?:string;
 }
 
 export default function HRConsultingTemplate({
@@ -39,6 +42,8 @@ export default function HRConsultingTemplate({
   projectTitle = "Strategic Human Resources Transformation",
   timeline = "{{timeline}}",
   totalInvestment = "{{total_investment}}",
+  userEmail="{{user_email}}",
+  userPhone="{{user_phone}}"
 }: HRConsultingTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
     firstName: "",
@@ -160,22 +165,30 @@ export default function HRConsultingTemplate({
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-gray-700 text-white p-8 text-center">
-                <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                  <EditableField label="projectTitle" defaultValue={projectTitle} />
+                </h1>
                 <p className="text-xl mb-6">
                   Human resources blueprint for talent, design, and culture optimization
                 </p>
                 <div className="text-lg">
                   <p>
                     Prepared for:{" "}
-                    <span className="font-semibold">{clientName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="clientName" defaultValue={clientName} />
+                    </span>
                   </p>
                   <p>
                     Company:{" "}
-                    <span className="font-semibold">{companyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="companyName" defaultValue={companyName} />
+                    </span>
                   </p>
                   <p className="mt-4">
                     Prepared by:{" "}
-                    <span className="font-semibold">{agencyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="agencyName" defaultValue={agencyName} />
+                    </span>
                   </p>
                   <p className="mt-4">{new Date().toLocaleDateString()}</p>
                 </div>
@@ -186,12 +199,12 @@ export default function HRConsultingTemplate({
                   Executive Summary
                 </h2>
                 <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">Dear {clientName},</p>
+                  <p className="mb-4">Dear <EditableField label="clientName" defaultValue={clientName} />,</p>
                   <p className="mb-4">
-                    To maintain a competitive edge, {companyName} recognizes the critical need to align its human capital strategy with its business objectives. A modern **{'{{HR Strategy}}'}** is essential to attract, develop, and retain the best workforce.
+                    To maintain a competitive edge,  <EditableField label="companyName" defaultValue={companyName} /> recognizes the critical need to align its human capital strategy with its business objectives. A modern **{'{{HR Strategy}}'}** is essential to attract, develop, and retain the best workforce.
                   </p>
                   <p className="mb-4">
-                    This proposal outlines a **{timeline} HR Transformation Plan** focused on **Organizational Design**, **Talent Management**, and **Culture Development** to maximize employee potential and drive sustainable growth.
+                    This proposal outlines a <EditableField label="timeline" defaultValue={timeline} /> HR Transformation Plan** focused on **Organizational Design**, **Talent Management**, and **Culture Development** to maximize employee potential and drive sustainable growth.
                   </p>
                   <div className="bg-indigo-50 p-4 rounded-lg">
                     <h3 className="font-semibold text-indigo-800 mb-2">
@@ -291,7 +304,7 @@ export default function HRConsultingTemplate({
                     marginBottom: "1.5rem",
                   }}
                 >
-                  The talent market for the **{'{{companyName}}'}** industry is highly competitive. To attract premium talent, a proactive, data-driven **Talent Strategy** focusing on a compelling Employee Value Proposition (EVP) and modern HR technology is critical.
+                  The talent market for the <EditableField label="companyName" defaultValue={companyName} /> industry is highly competitive. To attract premium talent, a proactive, data-driven **Talent Strategy** focusing on a compelling Employee Value Proposition (EVP) and modern HR technology is critical.
                 </p>
               </section>
 
@@ -301,7 +314,7 @@ export default function HRConsultingTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    We propose a comprehensive, **{'{{timeline}}'} HR Transformation Blueprint** structured around the critical pillars of modern people operations: **Talent Management, Organizational Design, and Culture.**
+                    We propose a comprehensive, <EditableField label="timeline" defaultValue={timeline} /> HR Transformation Blueprint** structured around the critical pillars of modern people operations: **Talent Management, Organizational Design, and Culture.**
                   </p>
 
                   <div className="space-y-6">
@@ -469,7 +482,9 @@ export default function HRConsultingTemplate({
 
                   <div className="grid grid-cols-3 gap-4 p-4 bg-gray-100 font-bold rounded-b-lg">
                     <span>Total Core HR Investment</span>
-                    <span>{totalInvestment}</span>
+                    <span>
+                      <EditableField label="totalInvestment" defaultValue={totalInvestment} />
+                    </span>
                     <span>12 Weeks (Core)</span>
                   </div>
                 </div>
@@ -530,7 +545,8 @@ export default function HRConsultingTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    {companyName}'s future growth is directly linked to the capabilities and engagement of its people. {agencyName} is ready to build the high-performance workforce and culture you need.
+                    <EditableField label="companyName" defaultValue={companyName} />'s future growth is directly linked to the capabilities and engagement of its people.
+                     <EditableField label="agencyName" defaultValue={agencyName} /> is ready to build the high-performance workforce and culture you need.
                   </p>
 
                   <div className="bg-indigo-50 p-6 rounded-lg">
@@ -541,7 +557,9 @@ export default function HRConsultingTemplate({
                       <li>Schedule a final Q&A session with the HR leadership</li>
                       <li>Approve the HR Consulting Agreement</li>
                       <li>
-                        Form the joint {agencyName}/{companyName} HR project team
+                        Form the joint 
+                        <EditableField label="agencyName" defaultValue={agencyName} />
+                        / <EditableField label="companyName" defaultValue={companyName} /> HR project team
                       </li>
                       <li>Commence Phase 1: HR Audit & Baseline Assessment</li>
                     </ol>
@@ -552,10 +570,10 @@ export default function HRConsultingTemplate({
                       Ready to transform your human capital?
                     </p>
                     <div className="space-y-2">
-                      <p className="font-semibold">{agencyName}</p>
+                      <p className="font-semibold"><EditableField label="agencyName" defaultValue={agencyName} /></p>
                       <p>Human Resources Consulting Partners</p>
-                      <p>Email: hr@agency.com</p>
-                      <p>Phone: 07890986568</p>
+                      <p><EditableField label="userEmail" defaultValue={userEmail} /></p>
+                      <p><EditableField label="userPhone" defaultValue={userPhone} /></p>
                     </div>
                   </div>
                 </div>
