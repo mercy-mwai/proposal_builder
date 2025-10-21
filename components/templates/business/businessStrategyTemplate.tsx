@@ -20,6 +20,7 @@ import {
   Target,  
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import EditableField from "../EditableField";
 
 interface BusinessStrategyTemplateProps {
   clientName?: string;
@@ -28,6 +29,8 @@ interface BusinessStrategyTemplateProps {
   projectTitle?: string;
   timeline?: string;
   totalInvestment?: string;
+  userEmail?:string;
+  userPhone?:string;
 }
 
 export default function BusinessStrategyProposalTemplate({
@@ -36,6 +39,8 @@ export default function BusinessStrategyProposalTemplate({
   agencyName = "{{agency_name}}",
   projectTitle = "{{project_title}}",
   timeline = "{{timeline}}",
+  userEmail = "{{user_email}}",
+  userPhone= "{{user_phone}}",
   totalInvestment = "{{total_investment}}",
 }: BusinessStrategyTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
@@ -159,22 +164,30 @@ export default function BusinessStrategyProposalTemplate({
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-gray-700 text-white p-8 text-center">
-                <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                  <EditableField label="Project Title" defaultValue={projectTitle} />
+                </h1>
                 <p className="text-xl mb-6">
                   Strategic Blueprint for Long-Term Value Creation
                 </p>
                 <div className="text-lg">
                   <p>
                     Prepared for:{" "}
-                    <span className="font-semibold">{clientName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="Client Name" defaultValue={clientName} />
+                    </span>
                   </p>
                   <p>
                     Company:{" "}
-                    <span className="font-semibold">{companyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="Company Name" defaultValue={companyName} />
+                    </span>
                   </p>
                   <p className="mt-4">
                     Prepared by:{" "}
-                    <span className="font-semibold">{agencyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="Agency Name" defaultValue={agencyName} />
+                    </span>
                   </p>
                   <p className="mt-4">{new Date().toLocaleDateString()}</p>
                 </div>
@@ -185,16 +198,17 @@ export default function BusinessStrategyProposalTemplate({
                   Executive Summary
                 </h2>
                 <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">Dear {clientName},</p>
+                  <p className="mb-4">Dear <EditableField label="Client Name" defaultValue={clientName} />,</p>
                   <p className="mb-4">
-                    The leadership team at {companyName} recognizes the need for
+                    The leadership team at <EditableField label="Company Name" defaultValue={companyName} /> 
+                    recognizes the need for
                     a refreshed **{"{{Business Strategy}}"}** to navigate market
                     shifts and capture new opportunities for sustainable,
                     long-term growth.
                   </p>
                   <p className="mb-4">
                     This proposal outlines a collaborative approach to develop a
-                    robust, **{timeline} Strategic Plan** that aligns your
+                    robust,<EditableField label="timeline" defaultValue={timeline} /> Strategic Plan** that aligns your
                     organizational capabilities with clear market advantage and
                     defines key initiatives to maximize shareholder and
                     stakeholder value.
@@ -301,7 +315,7 @@ export default function BusinessStrategyProposalTemplate({
                     marginBottom: "1.5rem",
                   }}
                 >
-                  The **{"{{companyName}}"}** industry is experiencing rapid
+                  The <EditableField label="companyName" defaultValue={companyName} /> industry is experiencing rapid
                   transformation, driven by technological advancements and
                   shifting customer expectations. Our analysis reveals
                   opportunities in [Specific Market Segment] and a clear threat
@@ -316,9 +330,9 @@ export default function BusinessStrategyProposalTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    We propose a comprehensive, **{"{{timeline}}"} Strategic
+                    We propose a comprehensive, <EditableField label="timeline" defaultValue={timeline} /> Strategic
                     Blueprint** structured around three core pillars to ensure
-                    holistic and sustainable value creation for {companyName}.
+                    holistic and sustainable value creation for <EditableField label="company name" defaultValue={companyName} />.
                   </p>
 
                   <div className="space-y-6">
@@ -575,7 +589,9 @@ export default function BusinessStrategyProposalTemplate({
                       <li>Schedule a final Q&A session with the partners</li>
                       <li>Approve the Strategic Consulting Agreement</li>
                       <li>
-                        Mobilize the joint {agencyName}/{companyName} project
+                        Mobilize the joint <EditableField label="agencyName" defaultValue={agencyName} />/ 
+                        <EditableField label="companyName" defaultValue={companyName} />
+                         project
                         team
                       </li>
                       <li>Commence Phase 1: Discovery & Analysis</li>
@@ -587,10 +603,14 @@ export default function BusinessStrategyProposalTemplate({
                       Ready to build your next strategic advantage?
                     </p>
                     <div className="space-y-2">
-                      <p className="font-semibold">{agencyName}</p>
+                      <p className="font-semibold"><EditableField label="agencyName" defaultValue={agencyName} /></p>
                       <p>Strategic Consulting Partners</p>
-                      <p>Email: strategy@agency.com</p>
-                      <p>Phone: 07890986568</p>
+                      <p>
+                        Email:<EditableField label="user email" defaultValue={userEmail} />
+                      </p>
+                      <p>
+                      Phone:<EditableField label="user phone" defaultValue={userPhone} />
+                      </p>
                     </div>
                   </div>
                 </div>
