@@ -16,12 +16,13 @@ import {
   Download,
   User,
   Target,
-  BarChart, // Financial Analysis
-  DollarSign, // Budget Planning/Investment
-  Shield, // Risk Assessment
-  PieChart, // General Finance/Optimization
+  BarChart, 
+  DollarSign, 
+  Shield, 
+  PieChart, 
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import EditableField from "../EditableField";
 
 interface FinancialConsultingTemplateProps {
   clientName?: string;
@@ -30,6 +31,8 @@ interface FinancialConsultingTemplateProps {
   projectTitle?: string;
   timeline?: string;
   totalInvestment?: string;
+  userEmail?:string;
+  userPhone?:string;
 }
 
 export default function FinancialConsultingProposalTemplate({
@@ -39,6 +42,8 @@ export default function FinancialConsultingProposalTemplate({
   projectTitle = "Strategic Financial Optimization & Growth Planning",
   timeline = "{{timeline}}",
   totalInvestment = "{{total_investment}}",
+  userEmail="{{user_email}}",
+  userPhone="{{user_phone}}"
 }: FinancialConsultingTemplateProps) {
   const [downloadForm, setDownloadForm] = useState({
     firstName: "",
@@ -169,22 +174,30 @@ export default function FinancialConsultingProposalTemplate({
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="bg-gray-700 text-white p-8 text-center">
-                <h1 className="text-4xl font-bold mb-4">{projectTitle}</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                  <EditableField label="Project Title" defaultValue={projectTitle} />
+                </h1>
                 <p className="text-xl mb-6">
                   Financial advisory covering budgeting, forecasting, investment planning, and risk management.
                 </p>
                 <div className="text-lg">
                   <p>
                     Prepared for:{" "}
-                    <span className="font-semibold">{clientName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="clientName" defaultValue={clientName} />
+                    </span>
                   </p>
                   <p>
                     Company:{" "}
-                    <span className="font-semibold">{companyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="companyName" defaultValue={companyName} />
+                    </span>
                   </p>
                   <p className="mt-4">
                     Prepared by:{" "}
-                    <span className="font-semibold">{agencyName}</span>
+                    <span className="font-semibold">
+                      <EditableField label="agencyName" defaultValue={agencyName} />
+                    </span>
                   </p>
                   <p className="mt-4">{new Date().toLocaleDateString()}</p>
                 </div>
@@ -195,12 +208,12 @@ export default function FinancialConsultingProposalTemplate({
                   Executive Summary
                 </h2>
                 <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">Dear {clientName},</p>
+                  <p className="mb-4">Dear  <EditableField label="clientName" defaultValue={clientName} />,</p>
                   <p className="mb-4">
-                    To accelerate profitable growth, {companyName} requires a sophisticated and forward-looking financial framework. Our goal is to move beyond historical reporting to a proactive **{'{{Financial Strategy}}'}** that supports investment and mitigates exposure.
+                    To accelerate profitable growth,  <EditableField label="companyName" defaultValue={companyName} /> requires a sophisticated and forward-looking financial framework. Our goal is to move beyond historical reporting to a proactive **{'{{Financial Strategy}}'}** that supports investment and mitigates exposure.
                   </p>
                   <p className="mb-4">
-                    This proposal outlines a **{timeline} Financial Optimization Plan** focused on **Financial Analysis**, **Budget Planning**, and **Risk Assessment** to maximize capital efficiency and secure future profitability.
+                    This proposal outlines a <EditableField label="timeline" defaultValue={timeline} /> Financial Optimization Plan** focused on **Financial Analysis**, **Budget Planning**, and **Risk Assessment** to maximize capital efficiency and secure future profitability.
                   </p>
                   <div className="bg-indigo-50 p-4 rounded-lg">
                     <h3 className="font-semibold text-indigo-800 mb-2">
@@ -304,7 +317,9 @@ export default function FinancialConsultingProposalTemplate({
                     marginBottom: "1.5rem",
                   }}
                 >
-                  By implementing best-practice financial modeling and governance, **{'{{companyName}}'}** can unlock substantial value, including reduced cost of capital and higher returns on strategic initiatives.
+                  By implementing best-practice financial modeling and governance, 
+                  <EditableField label="companyName" defaultValue={companyName} /> 
+                  can unlock substantial value, including reduced cost of capital and higher returns on strategic initiatives.
                 </p>
               </section>
 
@@ -389,9 +404,9 @@ export default function FinancialConsultingProposalTemplate({
                 </div>
 
                 <div className="digital-marketing">
-                  {/* Using a placeholder image/concept for the Financial model */}
+                  
                   <img
-                    src="/assets/image/businessStrategyModel.png"
+                    src="/assets/image/financialConsulting.jpg"
                     alt="financial-consulting-model"
                     style={{
                       maxWidth: "100%",
@@ -499,7 +514,7 @@ export default function FinancialConsultingProposalTemplate({
 
                   <div className="grid grid-cols-3 gap-4 p-4 bg-gray-100 font-bold rounded-b-lg">
                     <span>Total Core Financial Investment</span>
-                    <span>{totalInvestment}</span>
+                    <span><EditableField label="totalInvestment" defaultValue={totalInvestment} /></span>
                     <span>12 Weeks (Core)</span>
                   </div>
                 </div>
@@ -518,7 +533,8 @@ export default function FinancialConsultingProposalTemplate({
                   Expected Deliverables & Value
                 </h2>
                 <p className="text-base text-gray-600 mb-6">
-                  The primary outcome is a clear, scalable, and risk-managed financial platform that directly supports **{'{{companyName}}'}**'s strategic goals.
+                  The primary outcome is a clear, scalable, and risk-managed financial platform that directly supports
+                   <EditableField label="companyName" defaultValue={companyName} />'s strategic goals.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-gray-200 p-6 rounded-lg shadow-sm ">
@@ -560,7 +576,11 @@ export default function FinancialConsultingProposalTemplate({
                 </h2>
                 <div className="prose max-w-none text-gray-600">
                   <p className="mb-6">
-                    {companyName}'s long-term success requires a strong financial foundation. {agencyName} is ready to provide the rigorous analysis and strategic planning necessary to optimize your resources and secure your future.
+                     <EditableField label="companyName" defaultValue={companyName} />'s
+                      long-term success requires a strong financial foundation. 
+                      <EditableField label="agencyName" defaultValue={agencyName} />
+                       is ready to provide the rigorous analysis and strategic planning necessary to optimize your 
+                       resources and secure your future.
                   </p>
 
                   <div className="bg-indigo-50 p-6 rounded-lg">
@@ -571,7 +591,10 @@ export default function FinancialConsultingProposalTemplate({
                       <li>Schedule a final Q&A session with the CFO/Finance Leadership</li>
                       <li>Approve the Financial Consulting Agreement</li>
                       <li>
-                        Form the joint {agencyName}/{companyName} Financial project team
+                        Form the joint <EditableField label="agencyName" defaultValue={agencyName} />
+                        /
+                        <EditableField label="companyName" defaultValue={companyName} />
+                         Financial project team
                       </li>
                       <li>Commence Phase 1: Financial Analysis & Diagnostic</li>
                     </ol>
@@ -582,10 +605,10 @@ export default function FinancialConsultingProposalTemplate({
                       Ready to optimize your financial strategy?
                     </p>
                     <div className="space-y-2">
-                      <p className="font-semibold">{agencyName}</p>
+                      <p className="font-semibold"><EditableField label="agencyName" defaultValue={agencyName} /></p>
                       <p>Financial Consulting & Advisory Partners</p>
-                      <p>Email: finance@agency.com</p>
-                      <p>Phone: 07890986568</p>
+                      <p><EditableField  label="userEmail" defaultValue={userEmail}/></p>
+                      <p><EditableField label="userPhone" defaultValue={userPhone} /></p>
                     </div>
                   </div>
                 </div>
