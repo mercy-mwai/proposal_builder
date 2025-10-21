@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input } from '../ui/input';
-import { type } from 'os';
+
 
 interface EditableFieldProps{
    label:string,
