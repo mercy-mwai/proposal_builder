@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Download,User } from "lucide-react";
 import EditableField from "../EditableField";
+import { EDGE_RUNTIME_WEBPACK } from "next/dist/shared/lib/constants";
 
 interface BusinessConsultingProposalProps {
   proposalName?: string
@@ -496,34 +497,44 @@ export default function BusinessConsultingProposal({
               <section className="section" id="overview">
                 <h2 className="section-title">Executive Summary</h2>
                 <p>
-                  Dear <span className="variable">{clientContactFirst}</span>,
+                  Dear <span className="variable">
+                    <EditableField label="Client Contact First" defaultValue={clientContactFirst} />
+                    </span>,
                 </p>
 
                 <p>
                   Sometimes it's hard to see the forest for the trees. You work hard every day to meet your customers'
                   current needs and anticipate what they'll want in the future. You listen carefully, attend to your
                   market, and watch your cash flow. You give your employees the best training and benefits that inspire
-                  loyalty. <span className="variable">{clientName}</span> is a solid business with a good reputation —
+                  loyalty. <span className="variable">
+                    <EditableField label="Client Name" defaultValue={clientName} />
+                    </span> is a solid business with a good reputation —
                   so what's next?
                 </p>
 
                 <p>
                   Growth and innovation are important, but big picture thinking can be tough, especially when you're
                   busy with day-to-day transactions and business is consistently good. But could business be{" "}
-                  <span className="highlight">great</span>? At <span className="variable">{companyName}</span>, we think
+                  <span className="highlight">great</span>? At <span className="variable">
+                    <EditableField label="Company Name" defaultValue={companyName} />
+                    </span>, we think
                   so.
                 </p>
 
                 <p>
                   You outsource your cleaning, your accounting, your IT services, and your web presence. It makes good
                   financial and business sense to bring in the experts so you can focus on what you do best.{" "}
-                  <span className="variable">{companyName}</span> is the provider of choice for big-picture
+                  <span className="variable">
+                    <EditableField label="Company Name" defaultValue={companyName} />
+                    </span> is the provider of choice for big-picture
                   organizational problem solving and creative growth strategy.
                 </p>
 
                 <p>
                   Our objective is to build on your considerable strengths to ensure that{" "}
-                  <span className="variable">{clientName}</span> continues to be a leader in your industry.
+                  <span className="variable">
+                    <EditableField label="Client Name" defaultValue={clientName} />
+                    </span> continues to be a leader in your industry.
                 </p>
 
                 <p>I look forward to meeting with you to discuss next steps.</p>
@@ -532,10 +543,13 @@ export default function BusinessConsultingProposal({
                   Sincerely,
                   <br />
                   <span className="variable">
-                    {userAssigned}, {userTitle}
+                    <EditableField label="User Assigned" defaultValue={userAssigned} />
+                    , <EditableField label="User Title" defaultValue={userTitle} />
                   </span>
                   <br />
-                  <span className="variable">{companyName}</span>
+                  <span className="variable">
+                    <EditableField label="Company Name" defaultValue={companyName} />
+                  </span>
                 </p>
               </section>
 
@@ -543,7 +557,9 @@ export default function BusinessConsultingProposal({
               <section className="section" id="about">
                 <h2 className="section-title">About Us</h2>
                 <p>
-                  <span className="variable">{companyName}</span>'s solutions don't come out of a box ready to plug and
+                  <span className="variable">
+                     <EditableField label="Company Name" defaultValue={companyName} />
+                    </span>'s solutions don't come out of a box ready to plug and
                   play. We pride ourselves on identifying your challenges quickly and designing strategies to address
                   them, always keeping top of mind your business's need for minimal disruption.
                 </p>
@@ -596,7 +612,9 @@ export default function BusinessConsultingProposal({
               <section className="section" id="project-summary">
                 <h2 className="section-title">Project Summary</h2>
                 <p>
-                  <span className="variable">{clientName}</span> is a strong brand with a proven track record of meeting
+                  <span className="variable">
+                    <EditableField label="Client Name" defaultValue={clientName} />
+                    </span> is a strong brand with a proven track record of meeting
                   customer expectations in a rapidly changing market. You have the products and services people want,
                   but there's a gap between your current sales and where you want to be.
                 </p>
@@ -607,7 +625,8 @@ export default function BusinessConsultingProposal({
                 </p>
 
                 <p>
-                  That's where <span className="variable">{companyName}</span> comes in.
+                  That's where <span className="variable">
+                    <EditableField label="Company Name" defaultValue={companyName} /></span> comes in.
                 </p>
 
                 <div className="deliverables-box">
@@ -643,8 +662,12 @@ export default function BusinessConsultingProposal({
 
                 <h3 className="section-subtitle">Phase 1: Discovery & Analysis</h3>
                 <p>
-                  <span className="variable">{companyName}</span> assigns a team specifically for{" "}
-                  <span className="variable">{clientName}</span>'s needs. We get to know you - your strengths,
+                  <span className="variable">
+                    <EditableField label="Company Name" defaultValue={companyName} />
+                    </span> assigns a team specifically for{" "}
+                  <span className="variable">
+                    <EditableField label="Client Name" defaultValue={clientName} />
+                    </span>'s needs. We get to know you - your strengths,
                   challenges, history, and current needs - and we get to know your market. Together with your project
                   lead and senior management team, we define the problem and create goals to solve it.
                 </p>
@@ -870,7 +893,9 @@ export default function BusinessConsultingProposal({
 
                   <h4>Term and Availability</h4>
                   <p>
-                    This agreement shall be effective as of <span className="variable">{dateSubmitted}</span> and shall
+                    This agreement shall be effective as of <span className="variable">
+                      <EditableField label="Date Submitted" defaultValue={dateSubmitted} />
+                      </span> and shall
                     continue for a period of 12 consecutive months. Consultant will devote the agreed-upon hours per
                     month as outlined in the pricing section.
                   </p>
@@ -915,8 +940,12 @@ export default function BusinessConsultingProposal({
                     <li>We'll schedule our initial discovery meeting within 48 hours</li>
                   </ol>
                   <p style={{ marginTop: "1.5rem" }}>
-                    <strong>Questions?</strong> Call us at <span className="variable">{userPhone}</span> or email{" "}
-                    <span className="variable">{userEmail}</span>
+                    <strong>Questions?</strong> Call us at <span className="variable">
+                      <EditableField label="User Phone" defaultValue={userPhone} />
+                      </span> or email{" "}
+                    <span className="variable">
+                      <EditableField label="User Email" defaultValue={userEmail} />
+                    </span>
                   </p>
                 </div>
               </section>
@@ -928,11 +957,17 @@ export default function BusinessConsultingProposal({
                     <h4>Consultant</h4>
                     <div className="signature-line"></div>
                     <p>
-                      <span className="variable">{userAssigned}</span>
+                      <span className="variable">
+                        <EditableField label="User Assigned" defaultValue={userAssigned} />
+                      </span>
                       <br />
-                      <span className="variable">{companyName}</span>
+                      <span className="variable">
+                        <EditableField label="Company Name" defaultValue={companyName} />
+                      </span>
                       <br />
-                      Date: _______________
+                      Date: <span className="variable">
+                        <EditableField label="Date Submitted" defaultValue={dateSubmitted} />
+                      </span>
                     </p>
                   </div>
                   <div className="signature-box">
@@ -940,12 +975,17 @@ export default function BusinessConsultingProposal({
                     <div className="signature-line"></div>
                     <p>
                       <span className="variable">
-                        {clientContactFirst} {clientContactLast}
+                        <EditableField label="Client Contact First" defaultValue={clientContactFirst} /> 
+                        <EditableField label="Client Contact Last" defaultValue={clientContactLast} />
                       </span>
                       <br />
-                      <span className="variable">{clientName}</span>
+                      <span className="variable">
+                        <EditableField label="Client Name" defaultValue={clientName} />
+                      </span>
                       <br />
-                      Date: _______________
+                      Date:  <span className="variable">
+                        <EditableField label="Date Submitted" defaultValue={dateSubmitted} />
+                      </span>
                     </p>
                   </div>
                 </div>
